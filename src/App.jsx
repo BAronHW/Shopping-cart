@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import './output.css';
-import getOneItem, { get10Items } from './fetchData';
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, Container } from '@mui/material';
 import ItemCarousel from './components/ItemCarousel';
 import Home from './components/Home';
+import Navbar from './components/Navbar';
+import get10Items from './fetchData';
+import './output.css';
 
 function App() {
-  const [itemsarr, setItemsArr] = useState([]);
+  const [itemsArr, setItemsArr] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -20,16 +21,16 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white p-4 flex justify-center items-center">
+    <div className="min-h-screen bg-white flex flex-col">
+      <Navbar className="sticky"></Navbar>
       {loading ? (
-        <div className="flex justify-center items-center h-full w-full">
+        <div className=" flex justify-center items-center">
           <CircularProgress />
         </div>
       ) : (
-        <div>
-          
-          <Home></Home>
-        </div>
+        <Container>
+          <Home />
+        </Container>
       )}
     </div>
   );
