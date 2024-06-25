@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { CircularProgress, Typography } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 
 function ItemDetail() {
@@ -45,6 +46,9 @@ function ItemDetail() {
   return (
     <div className='flex justify-center items-center'>
       <img className='object-fill max-w-sm' src={`${item.image}`}></img>
+      <Link to={"/shopping"}>
+        <ArrowBackIcon></ArrowBackIcon>
+      </Link>
       <div>
         <Typography>{item.title}</Typography>
       </div>

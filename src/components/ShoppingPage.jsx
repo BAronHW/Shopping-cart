@@ -2,6 +2,7 @@ import React from 'react';
 import Card from './ShoppingCard';
 import Sidebar from './Sidebar';
 
+
 function ShoppingPage({ itemsarr }) {
   if (!itemsarr || itemsarr.length === 0) {
     return <div>No items found.</div>;
