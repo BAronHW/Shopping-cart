@@ -7,7 +7,7 @@ export default async function getOneItem(id) {
     const result = await response.json();
     return result; 
   } catch (error) {
-    console.error('Error fetching one item:', error);
+    console.error(`Error fetching one item (ID: ${id}):`, error);
     return null; 
   }
 }
@@ -15,15 +15,13 @@ export default async function getOneItem(id) {
 export async function get10Items() {
   let itemsarr = [];
   try {
-    for (let i = 0; i < 10; i++) {
-      const response = await fetch(`https://fakestoreapi.com/products/${i + 1}`); // Corrected the index
-      if (!response.ok) {
-        throw new Error('Unable to fetch data');
+    for (let i = 1; i <= 10; i++) {
+      const item = await getOneItem(i);
+      if (item) {
+        itemsarr.push(item);
       }
-      const result = await response.json();
-      console.log('Fetched item:', result); // Log the fetched item
-      itemsarr.push(result);
     }
+    console.log('Fetched items array:', itemsarr);
     return itemsarr;
   } catch (error) {
     console.error('Error fetching items:', error);
@@ -32,6 +30,6 @@ export async function get10Items() {
 }
 
 const checkUnique = (arr) => {
-  const set = new Set(arr.map(item => item.id));
+  const set = new Set(arr.map(item => item?.id));
   return set.size === arr.length;
 }

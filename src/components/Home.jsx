@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Box, Typography, Button, Container } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 function Home() {
   return (
@@ -19,7 +20,8 @@ function Home() {
           Discover the Unexpected – Your One-Stop Shop for Unique Finds!
         </Typography>
         <Box mt={4}>
-          <Button
+        <Link to={"/shopping"}>
+        <Button
             variant="outlined"
             sx={{ 
               borderColor: '#c5c7c9',
@@ -32,6 +34,7 @@ function Home() {
           >
             Start Shopping
           </Button>
+        </Link>
         </Box>
       </Box>
     </Container>

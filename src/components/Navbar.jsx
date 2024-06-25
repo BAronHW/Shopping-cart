@@ -4,6 +4,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import { alpha, styled } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -59,15 +60,17 @@ function Navbar({ setSearch }) {
     console.log(e.target.value);
   };
 
-  
-
   return (
     <AppBar position="sticky" color="">
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Assorted
+          <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+            Assorted.
+          </Link>
         </Typography>
-        <Button color="inherit">Shop</Button>
+        <Button color="inherit" component={Link} to="/shopping" sx={{ textDecoration: 'none', color: 'inherit' }}>
+          Shop
+        </Button>
         <Search>
           <SearchIconWrapper>
             <SearchIcon />

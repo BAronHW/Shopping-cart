@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { CircularProgress, Container } from '@mui/material';
-import ItemCarousel from './components/ItemCarousel';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
 import Navbar from './components/Navbar';
-import get10Items from './fetchData';
 import './output.css';
+import ShoppingPage from './components/ShoppingPage';
+import ItemDetail from './components/ItemDetail';
 
 function App() {
   const [itemsArr, setItemsArr] = useState([]);
@@ -14,7 +15,12 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const data = await get10Items();
+      let data = [];
+      for (let i = 1; i <= 20; i++) {
+        const res = await fetch(`https://fakestoreapi.com/products/${i}`);
+        const json = await res.json();
+        data.push(json);
+      }
       setItemsArr(data);
       setLoading(false);
     };
@@ -22,19 +28,22 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
-      <Navbar setSearch={setSearch} />
-      {loading ? (
-        <div className="flex justify-center items-center">
-          <CircularProgress />
-        </div>
-      ) : (
-        <Container>
-          <Home />
-          <ItemCarousel items={itemsArr} />
-        </Container>
-      )}
-    </div>
+    <Router>
+      <div className="min-h-screen bg-white flex flex-col">
+        <Navbar setSearch={setSearch} />
+        {loading ? (
+          <div className="flex justify-center items-center flex-grow">
+            <CircularProgress />
+          </div>
+        ) : (
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/shopping" element={<ShoppingPage itemsarr={itemsArr} />} />
+              <Route path='/shopping/:id' element={<ItemDetail></ItemDetail>}/>
+            </Routes>
+        )}
+      </div>
+    </Router>
   );
 }
 

@@ -1,10 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  corePlugins: {
-    preflight: false,
-  },
-  important: '#root',
-  content: ["./src/**/*.{html,jsx}"],
+  content: [
+    './src/**/*.{js,jsx,ts,tsx}', // Adjust this path based on your project structure
+  ],
   theme: {
     extend: {},
   },
