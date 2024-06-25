@@ -9,6 +9,7 @@ import './output.css';
 function App() {
   const [itemsArr, setItemsArr] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,14 +23,15 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      <Navbar className="sticky"></Navbar>
+      <Navbar setSearch={setSearch} />
       {loading ? (
-        <div className=" flex justify-center items-center">
+        <div className="flex justify-center items-center">
           <CircularProgress />
         </div>
       ) : (
         <Container>
           <Home />
+          <ItemCarousel items={itemsArr} />
         </Container>
       )}
     </div>

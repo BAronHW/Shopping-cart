@@ -34,7 +34,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
@@ -44,7 +43,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-function Navbar() {
+function Navbar({ setSearch }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleMenu = (event) => {
@@ -55,13 +54,20 @@ function Navbar() {
     setAnchorEl(null);
   };
 
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value);
+    console.log(e.target.value);
+  };
+
+  
+
   return (
-    <AppBar position="sticky" color=''>
+    <AppBar position="sticky" color="">
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           Assorted
         </Typography>
-        <MenuItem >Shop</MenuItem>
+        <Button color="inherit">Shop</Button>
         <Search>
           <SearchIconWrapper>
             <SearchIcon />
@@ -69,6 +75,7 @@ function Navbar() {
           <StyledInputBase
             placeholder="Search…"
             inputProps={{ 'aria-label': 'search' }}
+            onChange={handleSearchChange}
           />
         </Search>
         <IconButton color="inherit">
