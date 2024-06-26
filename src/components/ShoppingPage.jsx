@@ -23,9 +23,11 @@ function ShoppingPage({ itemsarr }) {
 
   return (
     <div className='flex justify-center items-center my-4 flex-col'>
-      <Typography variant='h6' fontWeight={"bold"}>{`Items (${itemsarr.length})`}</Typography>
       <div className='flex flex-row'>
+      <div className='flex flex-col mt-4'>
+        <Typography variant='h6' fontWeight={"bold"}>{`Items (${itemsarr.length})`}</Typography>
         <Sidebar catarray={getUniqueCategories(itemsarr)} />
+      </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-4">
           {itemsarr.map((item, index) => (
             <Card

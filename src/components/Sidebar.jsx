@@ -3,7 +3,7 @@ import { FormGroup, FormControlLabel, Checkbox, Typography } from '@mui/material
 
 function Sidebar({catarray}) {
   return (
-    <div>
+    <div className='flex flex-col items-center justify-start mt-4'>
       <FormGroup>
         {catarray.map((category, index) => (<FormControlLabel control={<Checkbox/>} key={index} label={category}/>))}
       </FormGroup>
