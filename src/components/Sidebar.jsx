@@ -5,7 +5,7 @@ function Sidebar({catarray}) {
   return (
     <div>
       <FormGroup>
-        {catarray.map((category, index) => {<FormControlLabel key={index} label={category}/>})}
+        {catarray.map((category, index) => (<FormControlLabel control={<Checkbox/>} key={index} label={category}/>))}
       </FormGroup>
     </div>
   )
