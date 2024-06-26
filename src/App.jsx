@@ -11,6 +11,7 @@ function App() {
   const [itemsArr, setItemsArr] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
+  const [basket, setBasket] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,7 +40,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/shopping" element={<ShoppingPage itemsarr={itemsArr} />} />
-              <Route path='/shopping/:id' element={<ItemDetail></ItemDetail>}/>
+              <Route path='/shopping/:id' element={<ItemDetail/>}/>
             </Routes>
         )}
       </div>

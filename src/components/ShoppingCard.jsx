@@ -43,7 +43,7 @@ export default function ShoppingCard({ image, title, price, rating, id }) {
         <div>
           <Typography level="body-xs">Total price:</Typography>
           <Typography fontSize="lg" fontWeight="lg">
-            {price}
+            ${price}
           </Typography>
         </div>
         <Button

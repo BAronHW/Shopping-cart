@@ -578,6 +578,10 @@ video {
   top: 1rem;
 }
 
+.right-4 {
+  right: 1rem;
+}
+
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;

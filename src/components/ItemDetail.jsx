@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { CircularProgress, Container, Typography, Button, IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
 function ItemDetail() {
@@ -9,7 +10,6 @@ function ItemDetail() {
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [reduceitemsarr, setreduceitemsarr] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -53,8 +53,14 @@ function ItemDetail() {
     return <div>No item found.</div>;
   }
 
+  const previousItemId = parseInt(id, 10) - 1;
+  const nextItemId = parseInt(id, 10) + 1;
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 p-6">
+      <IconButton component={Link} to={`/shopping/${previousItemId}`} className="fixed top-4 right-4">
+        <ArrowBackIcon fontSize="large" />
+      </IconButton>
       <div className="bg-white p-6 rounded-lg shadow-lg flex flex-col gap-4 md:flex-row items-center">
         <img className="object-contain max-w-sm rounded-lg" src={`${item.image}`} alt={item.title} />
         <Container maxWidth="md" className="flex flex-col gap-4">
@@ -69,8 +75,8 @@ function ItemDetail() {
           </div>
         </Container>
       </div>
-      <IconButton component={Link} to="/shopping" className="fixed top-4 left-4">
-        <ArrowBackIcon fontSize="large" />
+      <IconButton component={Link} to={`/shopping/${nextItemId}`} className="fixed top-4 left-4">
+        <ArrowForwardIcon fontSize="large" />
       </IconButton>
     </div>
   );
