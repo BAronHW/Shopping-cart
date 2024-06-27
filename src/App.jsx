@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import './output.css';
 import ShoppingPage from './components/ShoppingPage';
 import ItemDetail from './components/ItemDetail';
+import Checkout from './components/Checkout';
 
 function App() {
   const [itemsArr, setItemsArr] = useState([]);
@@ -40,7 +41,8 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/shopping" element={<ShoppingPage itemsarr={itemsArr} />} />
-              <Route path='/shopping/:id' element={<ItemDetail/>}/>
+              <Route path='/shopping/:id' element={<ItemDetail setBasket={setBasket} basket={basket}/>} />
+              <Route path='/shopping/checkout' element={<Checkout/>}/>
             </Routes>
         )}
       </div>

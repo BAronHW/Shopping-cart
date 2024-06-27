@@ -5,7 +5,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
-function ItemDetail() {
+function ItemDetail({ setBasket, basket }) {
   const { id } = useParams();
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -53,8 +53,16 @@ function ItemDetail() {
     return <div>No item found.</div>;
   }
 
-  const previousItemId = parseInt(id, 10) - 1;
-  const nextItemId = parseInt(id, 10) + 1;
+  const addToBasket = () => {
+    if(basket.length === 0){
+      setBasket(basket.push(id))
+    }
+    setBasket([...basket, id]);
+    console.log(basket);
+  };
+
+  const previousItemId = parseInt(id) - 1;
+  const nextItemId = parseInt(id) + 1;
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 p-6">
@@ -71,7 +79,7 @@ function ItemDetail() {
           <Typography variant='h5' className="font-semibold">${item.price}</Typography>
           <div className="flex gap-2">
             <Button variant="contained" color="primary" size="large">Buy Now</Button>
-            <Button variant="outlined" color="primary" size="large">Add To Basket</Button>
+            <Button variant="outlined" color="primary" size="large" onClick={addToBasket}>Add To Basket</Button>
           </div>
         </Container>
       </div>

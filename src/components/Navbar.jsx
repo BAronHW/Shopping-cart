@@ -81,7 +81,7 @@ function Navbar({ setSearch }) {
             onChange={handleSearchChange}
           />
         </Search>
-        <IconButton color="inherit">
+        <IconButton color="inherit" component={Link} to="/shopping/checkout">
           <ShoppingBagIcon />
         </IconButton>
         <Menu
