@@ -4,6 +4,7 @@ import { CircularProgress, Container, Typography, Button, IconButton } from '@mu
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import Errorpage from './Errorpage';
 
 function ItemDetail({ setBasket, basket }) {
   const { id } = useParams();
@@ -42,10 +43,7 @@ function ItemDetail({ setBasket, basket }) {
 
   if (error) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen">
-        <ErrorOutlineIcon sx={{ width: '20vw', height: '20vh' }} />
-        <Typography variant="h2">Error Item Not Found</Typography>
-      </div>
+      <Errorpage></Errorpage>
     );
   }
 
