@@ -33,6 +33,7 @@ function Checkout({ basketarr }) {
     return (
       <div className='flex items-center justify-center'>
         <Typography variant='h2' fontWeight={"bold"}>You have an empty basket</Typography>
+        <p>test</p>
       </div>
     );
   }
@@ -45,6 +46,5 @@ function Checkout({ basketarr }) {
     </div>
   );
 }
-// test
 
 export default Checkout;
