@@ -16,7 +16,8 @@ function ItemDetail({ setBasket, basket }) {
     setLoading(true);
     setError(null);
 
-    fetch(`https://fakestoreapi.com/products/${id}`)
+    try {
+      fetch(`https://fakestoreapi.com/products/${id}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error('Network response was not ok');
@@ -31,6 +32,10 @@ function ItemDetail({ setBasket, basket }) {
         setError(error);
         setLoading(false);
       });
+    } catch (error) {
+      console.log(error);
+      return <Errorpage></Errorpage>
+    }
   }, [id]);
 
   if (loading) {
@@ -41,21 +46,15 @@ function ItemDetail({ setBasket, basket }) {
     );
   }
 
-  if (error) {
-    return (
-      <Errorpage></Errorpage>
-    );
-  }
-
   if (!item) {
     return <div>No item found.</div>;
   }
 
   const addToBasket = () => {
     if(basket.length === 0){
-      setBasket(basket.push(id))
+      setBasket(basket.push(item))
     }
-    setBasket([...basket, id]);
+    setBasket([...basket, item]);
     console.log(basket);
   };
 
